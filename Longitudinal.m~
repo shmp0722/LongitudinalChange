@@ -1,7 +1,7 @@
 function Longitudinal 
 
 
-homeDir = '/sni-storage/wandell/biac2/wandell/data/Longitudinal_LHON';
+homeDir = '/sni-storage/wandell/biac2/wandell/data/LHON_LongitudinalChange';
 
 % subDir = dir(fullfile(homeDir,'LHON*')); 
 subDir = {...
@@ -22,6 +22,12 @@ for ii =1 : length(subDir)
     end
 end
  
+%% 
+% for ii =1 : length(subDir)
+%     dt6  = fullfile(homeDir,subDir{ii},'/dwi_2nd/dt6.mat');
+%     vals = dtiGetValFromFibers(dt.dt6,FG{kk},inv(dt.xformToAcpc),valName);
+
+
 %% command run osmosis-dti-rrmse.py with wmMask
 for i =1:length(subDir)
     cd(fullfile(homeDir, subDir{i},'raw'))

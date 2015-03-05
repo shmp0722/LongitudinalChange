@@ -1,0 +1,46 @@
+function afq = Long_AFQ_run
+%
+% Getting 
+%
+% afq = Long_AFQ_run
+%
+%
+
+%% Make directory structure for each subject
+homeDir = '/sni-storage/wandell/biac2/wandell/data/Longitudinal_LHON';
+
+% subDir = dir(fullfile(homeDir,'LHON*')); 
+subDir = {...
+    'LHON6-SS-20121221-DWI'
+    'LHON6-SS-20131206-DWI'
+    'LHON7-TT-dMRI-Anatomy'
+    'LHON7-TT-2nd-20150222'};
+
+for ii = 1:length(subDir)
+    sub_dirs{ii} = fullfile(homeDir, subDir{ii},'dwi_2nd');
+end
+
+sub_group = [0 1 0 1];
+
+% Now create and afq structure
+afq = AFQ_Create('sub_dirs', sub_dirs, 'sub_group', sub_group);
+
+%
+afq = AFQ_set(afq, 'outdir','/sni-storage/wandell/biac2/wandell/data/Longitudinal_LHON/result');
+afq = AFQ_set(afq, 'outname','afq_LHON2.mat');
+
+%% Run AFQ on these subjects
+afq = AFQ_run(sub_dirs, sub_group, afq);
+
+%% Callosal segmentation
+
+afq = AFQ_set(afq,'outname','afq_Whole_LHON2.mat');
+
+afq = AFQ_SegmentCallosum(afq);
+
+%%
+afq = AFQ_set(afq,'outname','afq_Whole_LHON2_OTOR.mat');
+
+Fg = {'LOTD4L4_1206.pdb','ROTD4L4_1206.pdb','LOR1206_D4L4.pdb','ROR1206_D4L4.pdb'};
+%%
+
