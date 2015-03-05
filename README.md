@@ -1,6 +1,6 @@
 LongitudinalChange
 ==================
-Diffusion values such as FA, MD, AD(pararell), and RD(parpendicular)are relative values. Probably We can't compare the values in longitudinally. But several publication, in fact,  already do this kind od comparison.
+Diffusion values such as FA, MD, AD(pararell), and RD(parpendicular)are relative values. Probably We can't compare the values in longitudinally. But several publication, in fact,  already do this kind of comparison.
 
 We don't know if it is worthy. 
 
