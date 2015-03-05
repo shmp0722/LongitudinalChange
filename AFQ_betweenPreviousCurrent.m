@@ -27,7 +27,7 @@ Diff = struct;
 for ii = 1:3 ;
     % take fg_classified from previous measurment
     if ii<4,
-    sub_dir = fullfile(homeDir2,subDir2{id2(ii)},'dwi_2nd');
+        sub_dir = fullfile(homeDir2,subDir2{id2(ii)},'dwi_2nd');
     else
         sub_dir = fullfile(homeDir,subDir{id2(ii)},'dwi_2nd');
     end
@@ -50,7 +50,7 @@ for ii = 1:3 ;
 %     [fa(ii,1), md(ii,1), rd(ii,1), ad(ii,1), cl(ii,1), vol(ii,1), TractProfile{ii,1}] = AFQ_ComputeTractProperties(fg_classified, dt6_2, numberOfNodes, clip2rois, sub_dir);
     [fa2, md2, rd2, ad2, cl2, vol2, TractProfile2] = AFQ_ComputeTractProperties(fg_classified, dt6_3, numberOfNodes, clip2rois, sub_dir);
     
-    %
+    % Store the data     
     Diff.fa{ii}  = fa;
     Diff.md{ii}  = md;
     Diff.ad{ii}  = ad;
@@ -58,6 +58,7 @@ for ii = 1:3 ;
     Diff.cl{ii}  = cl;
     Diff.cl{ii}  = vol;
     Diff.TP{ii}  = TractProfile;
+    Diff.subject{ii} = sub_dir;
 
     Diff.fa2{ii}  = fa2;
     Diff.md2{ii}  = md2;
@@ -71,6 +72,35 @@ for ii = 1:3 ;
 end
 
 %%
+TamagawaPath('long')
+cd result/
 save Diff Diff
 
- 
+%%
+cd /sni-storage/wandell/biac2/wandell/data/LHON_LongitudinalChange/result
+load Diff
+
+%%
+X =1:100;
+c = lines(10);
+% dif =  Diff.fa{1}(:,1)-Diff.fa2{1}(:,1);
+
+for ii = 1:3
+    for jj = 1:20
+        figure; hold on;
+        Y1 = Diff.fa{ii}(:,jj);
+        Y2 = Diff.fa2{ii}(:,jj);
+        if ~isnan(nansum(Y1)) && ~isnan(nansum(Y2)),
+            plot(X,Y1,'color',c(3,:))
+            plot(X,Y2,'color',c(4,:))
+            
+%             tractname = Diff.TP{1}(ii).name;
+%             tractname = strrep(tractname,' ','');
+%             title(ii)
+        end
+    end
+end
+
+
+
+
