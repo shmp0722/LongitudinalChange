@@ -23,7 +23,10 @@ sub_group = [1 1 1 1];
 afq = AFQ_Create('sub_dirs', sub_dirs, 'sub_group', sub_group);
 
 % set sae directory
-afq = AFQ_set(afq, 'outdir',fullfile(homeDir,'/results_2'));
+afq = AFQ_set(afq, 'outdir',fullfile(homeDir,'/results_3192015'));
+if ~exist(afq.params.outdir)
+    mkdir(afq.params.outdir);
+end;
 afq = AFQ_set(afq, 'outname','afq_PrePost.mat');
 afq.params.showfigs = 0;
 % 
@@ -33,13 +36,13 @@ afq = AFQ_run(sub_dirs, sub_group, afq);
 
 %% Callosal segmentation
 
-afq = AFQ_set(afq,'outname','afq_Whole_PrePost.mat');
+afq = AFQ_set(afq,'outname','afq_Whole_PrePost3192015.mat');
 
 afq = AFQ_SegmentCallosum(afq);
 
 %% add OR and OT
 % change save name
-afq = AFQ_set(afq,'outname','afq_Whole_PrePost_sameOTOR.mat');
+afq = AFQ_set(afq,'outname','afq_Whole_PrePost_sameOTOR3192015.mat');
 % 
 afq.params.clip2rois = 0;
 afq.params.cleanFibers = 0;

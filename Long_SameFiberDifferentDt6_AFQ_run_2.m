@@ -81,3 +81,5 @@ roi2Name = 'rh_V1_smooth3mm_NOT.mat';
 
 afq = SO_AFQ_AddNewFiberGroup(afq, fgName, roi1Name, roi2Name, 0, 1,0,[],0);
 
+%%
+  [norms, patient_data, control_data, afq] = AFQ_ComputeNorms(afq);

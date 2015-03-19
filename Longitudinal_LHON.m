@@ -7,7 +7,10 @@ function Longitudinal_LHON(property)
 
 % Same fibers but different dt6
 % load /sni-storage/wandell/biac2/wandell/data/Longitudinal_LHON/SameFibersDifferentDt6/results/afq_Whole_PrePost_OTOR
-load /sni-storage/wandell/biac2/wandell/data/Longitudinal_LHON/results_2/afq_Whole_PrePost_sameOTOR.mat
+% load /sni-storage/wandell/biac2/wandell/data/Longitudinal_LHON/results_2/afq_Whole_PrePost_sameOTOR.mat
+
+load '/sni-storage/wandell/biac2/wandell/data/Longitudinal_LHON/result/afq_Whole_PrePost2_OTOR.mat';
+
 
 afqP = afq;
 
