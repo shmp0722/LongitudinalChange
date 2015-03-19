@@ -4,7 +4,7 @@ function afq = Long_SameFiberDifferentDt6_AFQ_run
 % 
 % SO @ Vista Team 2015
 %% Make directory structure for each subject
-homeDir = '/sni-storage/wandell/biac2/wandell/data/Longitudinal_LHON/SameFibersDifferentDt6';
+homeDir = '/sni-storage/wandell/biac2/wandell/data/Longitudinal_LHON';
 
 % subDir = dir(fullfile(homeDir,'LHON*')); 
 subDir = {...
@@ -23,7 +23,7 @@ sub_group = [1 1 1 1];
 afq = AFQ_Create('sub_dirs', sub_dirs, 'sub_group', sub_group);
 
 % set sae directory
-afq = AFQ_set(afq, 'outdir',fullfile(homeDir,'/result'));
+afq = AFQ_set(afq, 'outdir',fullfile(homeDir,'/results_2'));
 afq = AFQ_set(afq, 'outname','afq_PrePost.mat');
 afq.params.showfigs = 0;
 % 
@@ -37,18 +37,16 @@ afq = AFQ_set(afq,'outname','afq_Whole_PrePost.mat');
 
 afq = AFQ_SegmentCallosum(afq);
 
-%%
+%% add OR and OT
 % change save name
-afq = AFQ_set(afq,'outname','afq_Whole_LHON2_OTOR.mat');
+afq = AFQ_set(afq,'outname','afq_Whole_PrePost_sameOTOR.mat');
 % 
 afq.params.clip2rois = 0;
 afq.params.cleanFibers = 0;
 % afq.params.computenorms = 1;
 
-
 % Fiber tracts to be added
 Fg = {'LOTD4L4_1206.pdb','ROTD4L4_1206.pdb','LOR1206_D4L4.pdb','ROR1206_D4L4.pdb'};
-
 
 % L-optic tract
 fgName =  Fg{1};
@@ -56,7 +54,6 @@ roi1Name = '85_Optic-Chiasm.mat';
 roi2Name = 'Lt-LGN4.mat';
 
 afq = SO_AFQ_AddNewFiberGroup(afq, fgName, roi1Name, roi2Name, 0, 1,0,[],0);
-% afq = AFQ_AddNewFiberGroup(afq, fgName, roi1Name, roi2Name, 0, 1,0,[],0);
 
 % R-optic tract
 fgName =  Fg{2};

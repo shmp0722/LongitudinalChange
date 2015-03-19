@@ -3,7 +3,12 @@ function Longitudinal_LHON(property)
 %% load afq structure
 
 % patient data
-load /sni-storage/wandell/biac2/wandell/data/Longitudinal_LHON/result/afq_Whole_LHON2_OTOR.mat
+% load /sni-storage/wandell/biac2/wandell/data/Longitudinal_LHON/result/afq_Whole_LHON2_OTOR.mat
+
+% Same fibers but different dt6
+% load /sni-storage/wandell/biac2/wandell/data/Longitudinal_LHON/SameFibersDifferentDt6/results/afq_Whole_PrePost_OTOR
+load /sni-storage/wandell/biac2/wandell/data/Longitudinal_LHON/results_2/afq_Whole_PrePost_sameOTOR.mat
+
 afqP = afq;
 
 load /sni-storage/wandell/biac2/wandell/data/DWI-Tamagawa-Japan2/RP/afq_Whole_8RP_25Normal_02202015_OTOR.mat
