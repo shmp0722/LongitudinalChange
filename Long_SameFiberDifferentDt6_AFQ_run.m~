@@ -40,7 +40,7 @@ afq = AFQ_set(afq,'outname','afq_Whole_PrePost3192015.mat');
 
 afq = AFQ_SegmentCallosum(afq);
 
-%% add OR and OT
+%% add OR and OTt
 % change save name
 afq = AFQ_set(afq,'outname','afq_Whole_PrePost_sameOTOR3192015.mat');
 % 
@@ -79,5 +79,3 @@ roi2Name = 'rh_V1_smooth3mm_NOT.mat';
 
 afq = SO_AFQ_AddNewFiberGroup(afq, fgName, roi1Name, roi2Name, 0, 1,0,[],0);
 
-%% Compute Normal and patient
-[norms, patient_data, control_data, afq] = AFQ_ComputeNorms(afq);
