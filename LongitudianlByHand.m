@@ -6,17 +6,40 @@
  sub_dirs3 = {'LHON7-TT-dMRI-Anatomy','LHON7-TT-2nd-20150222'};
 
  
- dtPre6 = dtiLoadDt6([afq.sub_dirs{1} '/dt6.mat']); 
- dtPost6 = dtiLoadDt6([afq.sub_dirs{2} '/dt6.mat']); 
-substruct = dtPost6.dt6- dtPre6.dt6;
+ dtPre6 = dtiLoadDt6(fullfile(homeDir,sub_dirs{1}, 'dwi_2nd/dt6.mat')); 
+ dtPost6 = dtiLoadDt6(fullfile(homeDir,sub_dirs{2}, 'dwi_2nd/dt6.mat')); 
+ substruct = dtPost6.dt6- dtPre6.dt6;
+
+%% TractProfile
+
+% define fg names
+Fg = {'LOTD4L4_1206.pdb','ROTD4L4_1206.pdb','LOR1206_D4L4.pdb','ROR1206_D4L4.pdb'};
+
+% Calculate diffusivities along with fiber tract
+for jj = 1:4;
+    Cur_fg = fgRead(fullfile(homeDir,sub_dirs{ii},'dwi_2nd/fibers',Fg{jj}));
+    
+    TractProfile{1,jj} = SO_FiberValsInTractProfiles(Cur_fg,dtPre6,'AP',100,1);
+    TractProfile{2,jj} = SO_FiberValsInTractProfiles(Cur_fg,dtPost6,'AP',100,1);
+end
  
- % Define the name of the segmented fiber group
+ 
+%% Load MoriGroup
+MoriGroup = '/sni-storage/wandell/biac2/wandell/data/DWI-Tamagawa-Japan/LHON6-SS-20121221-DWI/dwi_2nd/fibers/MoriGroups.mat';
+
+
+
+fg_classified =  dtiLoadFiberGroup(MoriGroup);
+%% Define the name of the segmented fiber group
+
+afq = AFQ_Create;
+
 segName = AFQ_get(afq,'segfilename');
  
         fWeight = AFQ_get(afq,'fiber weighting');
         % By default Tract Profiles of diffusion properties will always be
         % calculated
-        [fa, md, rd, ad, cl, vol, TractProfile] = AFQ_ComputeTractProperties(fg_classified, dt, afq.params.numberOfNodes, afq.params.clip2rois, sub_dirs{ii}, fWeight, afq);
+        [fa, md, rd, ad, cl, vol, TractProfile] = AFQ_ComputeTractProperties(fg_classified, dtPre6 , afq.params.numberOfNodes, afq.params.clip2rois, fullfile(homeDir,sub_dirs{1}));
         
         % Parameterize the shape of each fiber group with calculations of
         % curvature and torsion at each point and add it to the tract
