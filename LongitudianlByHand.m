@@ -1,7 +1,7 @@
  %% Compute Tract Profiles
     
  homeDir = '/sni-storage/wandell/biac2/wandell/data/DWI-Tamagawa-Japan';
- homeDir3 = '/sni-storage/wandell/biac2/wandell/data/DWI-Tamagawa-Japan';
+ homeDir3 = '/sni-storage/wandell/biac2/wandell/data/DWI-Tamagawa-Japan3';
  sub_dirs = {'LHON6-SS-20121221-DWI','LHON6-SS-20131206-DWI'};
  sub_dirs3 = {'LHON7-TT-dMRI-Anatomy','LHON7-TT-2nd-20150222'};
 
@@ -22,6 +22,7 @@ for jj = 1:4;
     TractProfile{2,jj} = SO_FiberValsInTractProfiles(Cur_fg,dtPost6,'AP',100,1);
 end
 
+%%
 dtPre6 = dtiLoadDt6(fullfile(homeDir3,sub_dirs3{1}, 'dwi_2nd/dt6.mat')); 
 dtPost6 = dtiLoadDt6(fullfile(homeDir3,sub_dirs3{2}, 'dwi_2nd/dt6.mat')); 
 substruct = dtPost6.dt6- dtPre6.dt6;
