@@ -138,8 +138,8 @@ for fibID = 1:4
         ylabel(upper(property),'fontName','Times','fontSize',14);
         title(sprintf('%s',normal_TP{subID,fibID}{1}.name(1:3)),'fontName','Times','fontSize',14)
 %         axis([10, 90 ,0.0, 0.8])
-        Yticks =  get(gca,'ytick');
-        set(gca,'ytickLabel',[Yticks(1),Yticks(end)])
+        Yticks =  get(gca,'ytickLabel');
+        set(gca,'ytickLabel',[Yticks(1),Yticks()
         set(gca,'xtick',[10,90],'xticklabel',{'OT','LGN'});%,'ytick',[0,0.8]);
         % legend('2012','2013')
     end
