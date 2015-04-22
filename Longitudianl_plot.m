@@ -61,45 +61,61 @@ for fibID = 1:4
         end;
     end
     
-    %     %% ANOVA
-    %     Ctl_Val =  fa(Ctl,:);
-    %     LHON_Val =  fa(LHON,:);
-    %     CRD_Val =  fa(CRD,:);
-    %
-    %     for jj= 1: 100
-    %         pac = nan(14,3);
-    %         pac(:,1)= Ctl_Val(:,jj);
-    %         pac(1:6,2)= LHON_Val(:,jj);
-    %         pac(1:5,3)= CRD_Val(:,jj);
-    %         [p(jj),~,stats(jj)] = anova1(pac,[],'off');
-    %         co = multcompare(stats(jj),'display','off');
-    %         C{jj}=co;
-    %     end
-    %     Portion =  p<0.01; % where is most effected
     %%
     Property = {'fa','md','ad','rd'};
     
     for kk = 1:length(Property)
-        %% Optic Tract
+        % Optic Tract
         property = Property{kk};
-        switch(property)
-            case {'FA' 'fa' 'fractional anisotropy'}
-                Nval = fa(Ctl,:);
-                Ppre  = lhon_TP{1,lhon_fib(fibID)}.vals.fa;
-                Ppost = lhon_TP{2,lhon_fib(fibID)}.vals.fa;
-            case {'MD' 'md' 'mean diffusivity'}
-                Nval = md(Ctl,:);
-                Ppre = lhon_TP{1,lhon_fib(fibID)}.vals.md;
-                Ppost = lhon_TP{2,lhon_fib(fibID)}.vals.md;
-            case {'RD' 'rd' 'radial diffusivity'}
-                Nval = rd(Ctl,:);
-                Ppre = lhon_TP{1,lhon_fib(fibID)}.vals.rd;
-                Ppost = lhon_TP{2,lhon_fib(fibID)}.vals.rd;
-            case {'AD' 'ad' 'axial diffusivity'}
-                Nval = ad(Ctl,:);
-                Ppre = lhon_TP{1,lhon_fib(fibID)}.vals.ad;
-                Ppost = lhon_TP{2,lhon_fib(fibID)}.vals.ad;
+        if fibID <3
+            switch(property)
+                case {'FA' 'fa' 'fractional anisotropy'}
+                    Nval = fa(Ctl,:);
+                    Ppre  = lhon_TP{1,lhon_fib(fibID)}.vals.fa;
+                    Ppost = lhon_TP{2,lhon_fib(fibID)}.vals.fa;
+                    YLIM = [0.2,0.8];
+                case {'MD' 'md' 'mean diffusivity'}
+                    Nval = md(Ctl,:);
+                    Ppre = lhon_TP{1,lhon_fib(fibID)}.vals.md;
+                    Ppost = lhon_TP{2,lhon_fib(fibID)}.vals.md;
+                    YLIM = [0.3,1.2];
+                case {'RD' 'rd' 'radial diffusivity'}
+                    Nval = rd(Ctl,:);
+                    Ppre = lhon_TP{1,lhon_fib(fibID)}.vals.rd;
+                    Ppost = lhon_TP{2,lhon_fib(fibID)}.vals.rd;
+                    YLIM = [0.3,0.9];
+                case {'AD' 'ad' 'axial diffusivity'}
+                    Nval = ad(Ctl,:);
+                    Ppre = lhon_TP{1,lhon_fib(fibID)}.vals.ad;
+                    Ppost = lhon_TP{2,lhon_fib(fibID)}.vals.ad;
+                    YLIM = [0.8,1.8];
+            end
+            
+        else
+            switch(property)
+                case {'FA' 'fa' 'fractional anisotropy'}
+                    Nval = fa(Ctl,:);
+                    Ppre  = lhon_TP{1,lhon_fib(fibID)}.vals.fa;
+                    Ppost = lhon_TP{2,lhon_fib(fibID)}.vals.fa;
+                    YLIM = [0,0.7];
+                case {'MD' 'md' 'mean diffusivity'}
+                    Nval = md(Ctl,:);
+                    Ppre = lhon_TP{1,lhon_fib(fibID)}.vals.md;
+                    Ppost = lhon_TP{2,lhon_fib(fibID)}.vals.md;
+                    YLIM = [0.3,1.7];
+                case {'RD' 'rd' 'radial diffusivity'}
+                    Nval = rd(Ctl,:);
+                    Ppre = lhon_TP{1,lhon_fib(fibID)}.vals.rd;
+                    Ppost = lhon_TP{2,lhon_fib(fibID)}.vals.rd;
+                    YLIM = [0.3,1.8];
+                case {'AD' 'ad' 'axial diffusivity'}
+                    Nval = ad(Ctl,:);
+                    Ppre = lhon_TP{1,lhon_fib(fibID)}.vals.ad;
+                    Ppost = lhon_TP{2,lhon_fib(fibID)}.vals.ad;
+                    YLIM = [0.8,2.5];
+            end
         end
+        
         
         figure; hold on;
         X = 1:100;
@@ -134,16 +150,27 @@ for fibID = 1:4
             'linewidth',2);
         
         % add label
-        xlabel('Location','fontName','Times','fontSize',14);
-        ylabel(upper(property),'fontName','Times','fontSize',14);
-        title(sprintf('%s',normal_TP{subID,fibID}{1}.name(1:3)),'fontName','Times','fontSize',14)
-%         axis([10, 90 ,0.0, 0.8])
-        Yticks =  get(gca,'ytick');
-        set(gca,'ytickLabel',[Yticks(1),Yticks(end)])
-        set(gca,'xtick',[10,90],'xticklabel',{'OT','LGN'});%,'ytick',[0,0.8]);
+        xlabel('Location','fontName','Times','fontSize',36);
+        ylabel(upper(property),'fontName','Times','fontSize',36);
+        title(sprintf('%s',normal_TP{subID,fibID}{1}.name(1:3)),'fontName','Times','fontSize',36)
+        axis([10, 90 ,YLIM])
+        %         Yticks =  get(gca,'ytick');
+        set(gca,'ytick',YLIM,'ytickLabel',YLIM)
+        switch fibID
+            case {3,4}
+                set(gca,'xtick',[10,90],'xlim',[10,90],'xticklabel',{'OT','LGN'},'fontSize',32);%,'ytick',[0,0.8]);
+            case {1,2}
+                set(gca,'xtick',[10,90],'xlim',[10,90],'xticklabel',{'LGN','V1'},'fontSize',32);
+        end
         % legend('2012','2013')
+        % save the figure
+        cd '/Users/shumpei/Google Drive/LHON data/Patient Profiles/LHON-SS'
+        saveas(gca, sprintf('%s_%s.eps',normal_TP{subID,fibID}{1}.name(1:3),upper(property)),'psc2')
+        saveas(gca, sprintf('%s_%s.png',normal_TP{subID,fibID}{1}.name(1:3),upper(property)))
     end
 end
+
+return
 %% OR
 fibID = 1;
 for subID = 1:length(subDir);
