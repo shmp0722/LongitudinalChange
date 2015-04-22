@@ -15,7 +15,10 @@ function Longitudianl_plot
 [~,subDir,~,CRD,LHON,Ctl,~] = Tama_subj2;
 
 %% Load normal_TP data
-TPdata = fullfile('/Users/shumpei/Documents/MATLAB/git/LongitudinalChange/Tama2_TP_SD.mat');
+% TPdata = fullfile('/Users/shumpei/Documents/MATLAB/git/LongitudinalChange/Tama2_TP_SD.mat');
+
+TPdata = '/sni-storage/wandell/biac3/wandell7/shumpei/matlab/git/LongitudinalChange';
+
 load(TPdata)
 normal_TP =  TractProfile;
 clear TPdata

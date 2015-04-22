@@ -15,17 +15,17 @@
 % define fg names
 Fg = {'LOTD4L4_1206.pdb','ROTD4L4_1206.pdb','LOR1206_D4L4.pdb','ROR1206_D4L4.pdb'};
 
-% Calculate diffusivities along with fiber tractcdt
+%% Calculate diffusivities along with fiber tractcdt
 for jj = 1:4;
     Cur_fg = fgRead(fullfile(homeDir,sub_dirs{1},'dwi_2nd/fibers',Fg{jj}));
     TractProfile{1,jj} = SO_FiberValsInTractProfiles(Cur_fg,dtPre6,'AP',100,1);
     TractProfile{2,jj} = SO_FiberValsInTractProfiles(Cur_fg,dtPost6,'AP',100,1);
 end
 
-%%
+%% LHON7
 dtPre6 = dtiLoadDt6(fullfile(homeDir3,sub_dirs3{1}, 'dwi_2nd/dt6.mat')); 
 dtPost6 = dtiLoadDt6(fullfile(homeDir3,sub_dirs3{2}, 'dwi_2nd/dt6.mat')); 
-substruct = dtPost6.dt6- dtPre6.dt6;
+% substruct = dtPost6.dt6- dtPre6.dt6;
 
 %% TractProfile
 % Calculate diffusivities along with fiber tractcdt
