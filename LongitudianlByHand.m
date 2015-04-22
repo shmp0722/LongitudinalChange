@@ -22,7 +22,7 @@ for jj = 1:4;
     TractProfile{2,jj} = SO_FiberValsInTractProfiles(Cur_fg,dtPost6,'AP',100,1);
 end
 
-%%
+%% LHON7
 dtPre6 = dtiLoadDt6(fullfile(homeDir3,sub_dirs3{1}, 'dwi_2nd/dt6.mat')); 
 dtPost6 = dtiLoadDt6(fullfile(homeDir3,sub_dirs3{2}, 'dwi_2nd/dt6.mat')); 
 substruct = dtPost6.dt6- dtPre6.dt6;

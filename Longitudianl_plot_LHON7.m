@@ -1,4 +1,4 @@
-function Longitudianl_plot
+function Longitudianl_plot_LHON7
 % Plot figure 5 showing individual FA value along the core of OR and optic tract.
 %
 % Repository dependencies
@@ -17,14 +17,18 @@ function Longitudianl_plot
 %% Load normal_TP data
 % TPdata = fullfile('/Users/shumpei/Documents/MATLAB/git/LongitudinalChange/Tama2_TP_SD.mat');
 
-TPdata = '/sni-storage/wandell/biac3/wandell7/shumpei/matlab/git/LongitudinalChange';
+TPdata = '/sni-storage/wandell/biac3/wandell7/shumpei/matlab/git/LongitudinalChange/Tama2_TP_SD.mat';
 
 load(TPdata)
 normal_TP =  TractProfile;
 clear TPdata
 %% Load patients' data
 
-TPdata = fullfile('/Users/shumpei/Documents/MATLAB/git/LongitudinalChange/LHON6_TP.mat');
+TPdata = '/sni-storage/wandell/biac3/wandell7/shumpei/matlab/git/LongitudinalChange/LHON7_TP.mat';
+
+if ~exist(TPdata)
+TPdata = fullfile('/Users/shumpei/Documents/MATLAB/git/LongitudinalChange/LHON7_TP.mat');
+end;
 load(TPdata)
 
 lhon_TP = TractProfile;
