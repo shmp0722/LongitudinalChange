@@ -27,10 +27,10 @@ normal_TP =  TractProfile;
 clear TPdata
 %% Load patients' data
 
-TPdata = '/sni-storage/wandell/biac3/wandell7/shumpei/matlab/git/LongitudinalChange/LHON7_TP.mat';
+TPdata = '/sni-storage/wandell/biac3/wandell7/shumpei/matlab/git/LongitudinalChange/JMD3AK_TP.mat';
 
 if ~exist(TPdata)
-    TPdata = fullfile('/Users/shumpei/Documents/MATLAB/git/LongitudinalChange/LHON7_TP.mat');
+    TPdata = fullfile('/Users/shumpei/Documents/MATLAB/git/LongitudinalChange/JMD3AK_TP.mat');
 end;
 load(TPdata)
 
